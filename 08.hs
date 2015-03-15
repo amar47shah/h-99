@@ -1,6 +1,5 @@
 compress :: Eq a => [a] -> [a]
 compress (x:y:xs)
- | x == y         =        compress (x:xs)
- | x /= y         = [x] ++ compress (y:xs)
-compress (x:[])   = [x]
-compress []       = []
+ | x == y    =     compress (x:xs)
+ | otherwise = x : compress (y:xs)
+compress xs  = xs
