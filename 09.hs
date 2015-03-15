@@ -1,4 +1,5 @@
---pack :: [a] -> [[a]]
+pack :: Eq a => [a] -> [[a]]
+pack xs = firstRun xs : firstRun (afterFirstRun xs) : []
 
 same :: Eq a => [a] -> Bool
 same xs = all (== head xs) xs
