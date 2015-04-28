@@ -1,7 +1,6 @@
 pack :: Eq a => [a] -> [[a]]
-pack (x:xs) = let run  = x : takeWhile (== x) xs
-                  rest =     dropWhile (== x) xs
-              in  run : pack rest
+pack (x:xs) = let (endOfRun, rest) = span (== x) xs
+              in  (x:endOfRun) : pack rest
 pack _      = []
 --  a list of lists of items of type a
 --  where the last list is unprocessed ...?
