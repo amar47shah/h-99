@@ -4,9 +4,9 @@ pack xs = fst $ ack ([], xs)
         ack (runs, xs) = ack (runs ++ [run xs], rest xs)
 
 run  :: Eq a => [a] -> [a]
-run  (x:xs) = x : takeWhile (== x) xs
-run  []     = []
+run  (x:xs) = x : (fst $ span (== x) xs)
+run  _      = []
 
 rest :: Eq a => [a] -> [a]
-rest (x:xs) =     dropWhile (== x) xs
-rest []     = []
+rest (x:xs) =      snd $ span (== x) xs
+rest _      = []
