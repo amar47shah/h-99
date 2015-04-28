@@ -1,12 +1,10 @@
 pack :: Eq a => [a] -> [[a]]
 pack xs = fst $ ack ([], xs)
   where ack (runs, []) = (runs, [])
-        ack (runs, xs) = ack (runs ++ [run xs], rest xs)
+        ack (runs, xs) = ack (runs ++ [fst $ runAndRest xs],
+                                       snd $ runAndRest xs)
 
-run  :: Eq a => [a] -> [a]
-run  (x:xs) = x : (fst $ span (== x) xs)
-run  _      = []
-
-rest :: Eq a => [a] -> [a]
-rest (x:xs) =      snd $ span (== x) xs
-rest _      = []
+runAndRest :: Eq a => [a] -> ([a], [a])
+runAndRest (x:xs) = let (  first, second) = span (== x) xs
+                    in  (x:first, second)
+runAndRest _      = ([], [])
