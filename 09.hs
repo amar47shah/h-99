@@ -1,11 +1,10 @@
 pack :: Eq a => [a] -> [[a]]
-pack xs = firstRun xs : firstRun (afterFirstRun xs) : []
+pack xs = fst $ ack ([], xs)
+  where ack (runs, []) = (runs, [])
+        ack (runs, xs) = ack (runs ++ [run xs], rest xs)
 
-same :: Eq a => [a] -> Bool
-same xs = all (== head xs) xs
+run :: Eq a => [a] -> [a]
+run xs = takeWhile (== head xs) xs
 
-firstRun :: Eq a => [a] -> [a]
-firstRun xs = takeWhile (== head xs) xs
-
-afterFirstRun :: Eq a => [a] -> [a]
-afterFirstRun xs = dropWhile (== head xs) xs
+rest :: Eq a => [a] -> [a]
+rest xs = dropWhile (== head xs) xs
