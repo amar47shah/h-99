@@ -3,8 +3,10 @@ pack xs = fst $ ack ([], xs)
   where ack (runs, []) = (runs, [])
         ack (runs, xs) = ack (runs ++ [run xs], rest xs)
 
-run :: Eq a => [a] -> [a]
-run xs = takeWhile (== head xs) xs
+run  :: Eq a => [a] -> [a]
+run  (x:xs) = x : takeWhile (== x) xs
+run  []     = []
 
 rest :: Eq a => [a] -> [a]
-rest xs = dropWhile (== head xs) xs
+rest (x:xs) =     dropWhile (== x) xs
+rest []     = []
