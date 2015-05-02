@@ -1,3 +1,5 @@
+module Solution09 where
+
 import Data.List (foldl')
 
 pack :: Eq a => [a] -> [[a]]
