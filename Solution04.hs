@@ -1,11 +1,10 @@
---99 Problems
---4
+module Solution04 where
 
 myLength = length
 
 myLength' :: [a] -> Int
 myLength' = accumLength 0
-  where accumLength n []     = n 
+  where accumLength n []     = n
         accumLength n (_:xs) = accumLength (n + 1) xs
 
 myLength'' :: [a] -> Int

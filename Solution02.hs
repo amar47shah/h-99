@@ -1,5 +1,4 @@
---99 Problems
---2
+module Solution02 where
 
 myButLast :: [a] -> a
 myButLast [] = error "myButLast: empty list"

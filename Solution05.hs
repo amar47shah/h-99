@@ -1,5 +1,4 @@
---99 Problems
---5
+module Solution05 where
 
 myReverse :: [a] -> [a]
 myReverse []     = []

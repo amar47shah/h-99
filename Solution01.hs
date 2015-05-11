@@ -1,5 +1,4 @@
---Ninety-nine Haskell Problems
---Problem 1
+module Solution01 where
 
 myLast = last
 

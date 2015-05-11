@@ -1,3 +1,5 @@
+module Solution11 where
+
 import Solution10
 
 data Run n a = Single a | Multiple n a

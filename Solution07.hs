@@ -1,3 +1,5 @@
+module Solution07 where
+
 data NestedList a = Elem a | List [NestedList a] deriving (Eq, Show)
 
 isElem :: NestedList a -> Bool
