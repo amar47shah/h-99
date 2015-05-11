@@ -10,4 +10,4 @@ modify (1, x) = Single x
 modify (n, x) = Multiple n x
 
 encodeModified :: Eq a => [a] -> [Run Int a]
-encodeModified xs = map modify (encode xs)
+encodeModified = map modify . encode
