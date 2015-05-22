@@ -3,11 +3,11 @@ module Solution13 where
 import Solution11 (Run(..))
 
 encodeDirect :: Eq a => [a] -> [Run Int a]
-encodeDirect = map modify . encode
-  where modify (1, x) = Single x
-        modify (n, x) = Multiple n x
-        encode = foldr step []
-          where step x []             = (    1, x ):[]
-                step x (y@(n, x'):ys)
-                 | x == x'            = (n + 1, x'):ys
-                 | otherwise          = (    1, x ):y:ys
+encodeDirect = foldr step []
+  where step x [] = [Single x]
+        step x (y@(Single x') : ys)
+         | x == x'   = Multiple 2 x' : ys
+         | otherwise = Single x : y : ys
+        step x (y@(Multiple n x') : ys)
+         | x == x'   = Multiple (1 + n) x' : ys
+         | otherwise = Single x : y : ys
