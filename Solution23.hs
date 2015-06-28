@@ -14,6 +14,12 @@ randomSelect xs n
                         next <- randomSelect remaining $ pred n
                         return $ chosen : next
 
+safeRandomSelect :: [a] -> Int -> IO (Maybe [a])
+safeRandomSelect xs n
+  | n `elem` [1..length xs] = do rs <- randomSelect xs n
+                                 return $ Just rs
+  | otherwise               = return Nothing
+
 randomRemove :: [a] -> IO (a, [a])
 randomRemove xs = do
   i <- randomPlace xs
