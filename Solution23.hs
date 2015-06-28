@@ -6,11 +6,13 @@ import System.Random (getStdRandom, randomR)
 import Solution20 (removeAt)
 
 randomSelect :: [a] -> Int -> IO [a]
-randomSelect _  0 = return []
-randomSelect xs n = do
-  (chosen, remaining) <- randomRemove xs
-  next <- randomSelect remaining (n - 1)
-  return $ chosen : next
+randomSelect xs n
+  | n <  0         = return $ error "number of selections must be greater than zero"
+  | n >  length xs = return $ error "number of selections must be fewer than list items"
+  | n == 0         = return []
+  | otherwise      = do (chosen, remaining) <- randomRemove xs
+                        next <- randomSelect remaining $ pred n
+                        return $ chosen : next
 
 randomRemove :: [a] -> IO (a, [a])
 randomRemove xs = do
