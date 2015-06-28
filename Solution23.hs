@@ -1,5 +1,6 @@
 module Solution23 where
 
+import Control.Applicative ((<$>))
 import Data.List (group, sort)
 import System.Random (getStdRandom, randomR)
 
@@ -16,14 +17,11 @@ randomSelect xs n
 
 safeRandomSelect :: [a] -> Int -> IO (Maybe [a])
 safeRandomSelect xs n
-  | n `elem` [1..length xs] = do rs <- randomSelect xs n
-                                 return $ Just rs
+  | n `elem` [1..length xs] = Just <$> randomSelect xs n
   | otherwise               = return Nothing
 
 randomRemove :: [a] -> IO (a, [a])
-randomRemove xs = do
-  i <- randomPlace xs
-  return $ removeAt i xs
+randomRemove xs = flip removeAt xs <$> randomPlace xs
 
 randomPlace :: [a] -> IO Int
 randomPlace xs = getStdRandom . randomR $ (1, length xs)
