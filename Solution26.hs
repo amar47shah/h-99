@@ -1,9 +1,13 @@
 module Solution26 where
 
+import Data.List (nub, permutations, sort)
+
 import Solution20 (removeAt)
 
-combinations :: Int -> [a] -> [[a]]
-combinations = undefined
+combinations :: (Eq a, Ord a) => Int -> [a] -> [[a]]
+combinations n xs
+  | n > length xs = []
+  | otherwise     = sort . nub . map (sort . take n) . permutations $ xs
 
 chooseZero :: [a] -> [[a]]
 chooseZero xs = []
