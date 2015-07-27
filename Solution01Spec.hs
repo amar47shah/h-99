@@ -8,9 +8,9 @@ import Test.QuickCheck
 main :: IO ()
 main = hspec $ do
   describe "myLast" $ do
-    context "of a list of Char" $ do
-      it "complements init" $ property $
-        ((\x -> (not $ null x) ==> x == init x ++ [myLast x]) :: [Char] -> Property)
-    context "of a list of Int" $ do
-      it "complements init" $ property $
-        ((\x -> (not $ null x) ==> x == init x ++ [myLast x]) :: [Int] -> Property)
+    describe "complements init" $ do
+      specify "with [Char]" $ property $ (prop :: [Char] -> Property)
+      specify "with [Int]" $ property $ (prop :: [Int] -> Property)
+
+prop :: Eq a => [a] -> Property
+prop = (\x -> (not $ null x) ==> x == init x ++ [myLast x])
