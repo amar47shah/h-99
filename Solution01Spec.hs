@@ -13,4 +13,4 @@ main = hspec $ do
       specify "with [Int]" $ property $ (prop :: [Int] -> Property)
 
 prop :: Eq a => [a] -> Property
-prop = (\x -> (not $ null x) ==> x == init x ++ [myLast x])
+prop x = (not $ null x) ==> x == init x ++ [myLast x]
