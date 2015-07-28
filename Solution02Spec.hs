@@ -1,4 +1,4 @@
-module Solution01Spec where
+module Solution02Spec where
 
 import Solution02
 
