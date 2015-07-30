@@ -12,7 +12,7 @@ main = hspec $ do
       specify "with [Char]" . property $
         (invertsWithConcat :: [Char] -> Property)
       specify "with [Int]" . property $
-        (invertsWithConcat :: [Char] -> Property)
+        (invertsWithConcat :: [Int] -> Property)
 
 invertsWithConcat :: Eq a => [a] -> Property
 invertsWithConcat xs = property $ xs == (concat . pack) xs
