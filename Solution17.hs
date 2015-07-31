@@ -7,18 +7,18 @@ split , split2, split3, split4         :: [a] -> Int -> ([a], [a])
 split5, split6, split7, split8, split9 :: [a] -> Int -> ([a], [a])
 
 split xs n = (up_to xs n, after xs n)
-    where up_to _      n | n <= 0 = []
-          up_to []     _          = []
-          up_to (x:xs) n          = x : up_to xs (n - 1)
-                                    -- (:) x . up_to xs $ pred n
-          after xs     n | n <= 0 = xs
-          after []     _          = []
-          after (_:xs) n          = after xs (n - 1)
-                                    -- after xs $ pred n
+    where up_to _ n' | n' <= 0 = []
+          up_to [] _ = []
+          up_to (x:xs') n' = x : up_to xs' (n' - 1)
+                          -- (:) x . up_to xs' $ pred n'
+          after xs' n' | n' <= 0 = xs'
+          after [] _ = []
+          after (_:xs') n' = after xs' (n' - 1)
+                          -- after xs' $ pred n'
 
-split2 xs     n | n <= 0 = ([], xs)
-split2 []     _          = ([], [])
-split2 (x:xs) n          = (x : fst recurse, snd recurse)
+split2 xs n | n <= 0 = ([], xs)
+split2 [] _         = ([], [])
+split2 (x:xs) n     = (x : fst recurse, snd recurse)
     where recurse = split2 xs $ n - 1
 
 split3 = flip splitAt
