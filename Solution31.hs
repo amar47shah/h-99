@@ -1,4 +1,4 @@
-module Solution28 (isPrime) where
+module Solution31 (isPrime) where
 
 isPrime :: Integer -> Bool
 isPrime p

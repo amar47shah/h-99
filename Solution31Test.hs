@@ -1,6 +1,6 @@
-module Solution28Test where
+module Solution31Test where
 
-import Solution28
+import Solution31
 
 import Test.Tasty
 import qualified Test.Tasty.QuickCheck as QC
